@@ -1,22 +1,21 @@
-﻿using System;
+﻿using Avalonia;
+using System;
 
-using AuditText;
+namespace PostX;
 
-namespace MashinePostaLogic;
+class Program
+{
+    // Initialization code. Don't use any Avalonia, third-party APIs or any
+    // SynchronizationContext-reliant code before AppMain is called: things aren't initialized
+    // yet and stuff might break.
+    [STAThread]
+    public static void Main(string[] args) => BuildAvaloniaApp()
+        .StartWithClassicDesktopLifetime(args);
 
-
-class Post{
-    static void Main(string[] args){
-        Console.WriteLine("Ведіть");
-        string? text = Console.ReadLine();
-        Audit audit = new Audit();
-        string? respondAuditText = audit.AuditTextCeker(text);
-
-        Console.WriteLine(respondAuditText);
-
-
-
-
-    }
+    // Avalonia configuration, don't remove; also used by visual designer.
+    public static AppBuilder BuildAvaloniaApp()
+        => AppBuilder.Configure<App>()
+            .UsePlatformDetect()
+            .WithInterFont()
+            .LogToTrace();
 }
-
