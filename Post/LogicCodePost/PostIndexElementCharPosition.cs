@@ -4,7 +4,7 @@ namespace PostIndexElementCharPosition
     {
         // Метод для отримання індексів і обробки тексту
         // Method for obtaining indices and processing the text
-        public string PostGetIndex(string? textAudit)
+        public (List<string>,List<int>,List<int>) PostGetIndex(string? textAudit)
         {
             string? text = textAudit; 
             List<string> result = new List<string>();  // Список для зберігання результатів //List to store results
@@ -18,6 +18,7 @@ namespace PostIndexElementCharPosition
             // 5 = Знак '-0>' // 5 = sign '-0>'
             // 6 = Знак '<0-' // 6 = sign '<0-'
             // -1 = Знак '?' // -1 = sign '?'
+            // 10 = Знак '[1], [0]' // 10 = sign '[1], [0]'
             int currentPos = 0;  // Поточна позиція у тексті
             // Current position in the text
 
@@ -95,6 +96,25 @@ namespace PostIndexElementCharPosition
                     indexElement.Add(6);  // Індекс для знаку '<0-'
                     // Index for the sign '<0-'
                 }
+                else if ((text ?? "").Substring(currentPos).StartsWith("[1]"))
+                {
+                    string sign = (text ?? "").Substring(currentPos, 3);
+                    result.Add(sign);
+                    positions.Add(currentPos);
+                    currentPos += 3;
+                    indexElement.Add(10);  // Індекс для знаку '[1]'
+                    // Index for the sign '[1]'
+                }
+                else if ((text ?? "").Substring(currentPos).StartsWith("[0]"))
+                {
+                    string sign = (text ?? "").Substring(currentPos, 3);
+                    result.Add(sign);
+                    positions.Add(currentPos);
+                    currentPos += 3;
+                    indexElement.Add(10);  // Індекс для знаку '[0]'
+                    // Index for the sign '[0]'
+                }
+                
                 else if ((text ?? "").Substring(currentPos).StartsWith("!"))
                 {
                     string sign = (text ?? "").Substring(currentPos, 1);
@@ -111,15 +131,8 @@ namespace PostIndexElementCharPosition
                 }
             }
 
-            // Виводимо результат для кожного символу
-            // Output result for each symbol
-            for (int i = 0; i < result.Count; i++)
-            {
-                Console.WriteLine($"Символ: {result[i]}, Позиція: {positions[i]}, Індекс елемента: {indexElement[i]}");
-                // Output symbol, position, and index element
-            }
 
-            return "Processed: " + (text ?? "empty"); // Повертає повідомлення про обробку
+            return (result, positions, indexElement) ; // Повертає повідомлення про обробку
             // Return a processing message
         }
     }

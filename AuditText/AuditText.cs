@@ -47,7 +47,7 @@ namespace AuditText
             }
             // Перевірка на наявність символів, які не є 0, 1, <, -, >, ?
             // Checks for characters that are not 0, 1, <, -, >, ?
-            else if ((text ?? " ").Any(c => c != '0' && c != '1' && c != '<' && c != '-' && c != '>' && c != '!' && c != '?' && c != 'V' && c != 'X'))
+            else if ((text ?? " ").Any(c => c != '0' && c != '1' && c != '<' && c != '-' && c != '>' && c != '!' && c != '?' && c != 'V' && c != 'X' && c != '[' && c != ']'))
             {
                 return "PostX: does not allow numbers greater than 1 or less than 0"; // Повертаємо повідомлення про помилку
                 // Return an error message

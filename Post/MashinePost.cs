@@ -1,5 +1,5 @@
 using PostIndexElementCharPosition;
-
+using PostCalculation;
 namespace PostMashine;
 
 // Клас, що відповідає за запуск обробки поштових індексів
@@ -16,6 +16,11 @@ class MashinePostStart
         
         // Повертаємо результат обробки індексів
         // Return the result of index processing
-        return post.PostGetIndex(textAudit);
+        (List<string> result,List<int> positions,List<int>indexElement) = post.PostGetIndex(textAudit);
+
+        RunPostCulculation postCulculation = new RunPostCulculation();
+        return  postCulculation.Start(result,positions,indexElement);
+
+        
     }
 }
