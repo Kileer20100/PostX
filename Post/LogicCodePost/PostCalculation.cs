@@ -4,6 +4,7 @@ namespace PostCalculation;
 class PostResult{
     private int search;
     List<int> numberConver = new List<int>();
+    private const int START_INDEX = 10;
     public string PostCalcularionResult(List<string>? result,List<int>? positions,List<int>? indexElement){
 
     if (result == null || positions == null || indexElement == null || result.Count != positions.Count || result.Count != indexElement.Count)
@@ -11,6 +12,9 @@ class PostResult{
         
         return "PostX: Lists have different lengths!";
     }
+
+
+
     for (int i = 0; i < result.Count; i++)
     {
         if(indexElement[i] == 10){
@@ -19,15 +23,17 @@ class PostResult{
         }
     }
     Console.WriteLine(this.search);
-
+    int sumator = 0;
     for (int i = 0; i < result.Count; i++)
     {
-        if (this.search == 0)
+        if (this.search < 0 )
         {
             return "PostX: no start [1] [0]";
         }
-        //Береобразования стрига в инт и запись єто в лист с кждім новім елементом
-        else if (indexElement[i] == 0)
+
+
+        //Береобразования стрига в инт и запись єто в лист с кждим новим елементом
+        if (indexElement[i] == 0)
         {
             
             foreach (char c in result[i])
@@ -37,23 +43,55 @@ class PostResult{
                     int number = (int)Char.GetNumericValue(c);  // Преобразуем символ в число
                     numberConver.Add(number);  // Добавляем число в список
                 }
+                
             }
-                    for (int j = 0; j < numberConver.Count; j++)
-        {
-            Console.WriteLine(numberConver[j]);
+            if (i + 1 < result.Count)
+            {
+                // Проверяем, если следующий элемент равен "[0]" или "[1]"
+                if (result[i + 1] == "[0]")
+                {
+                    numberConver.Add(0);  // Добавляем 0
+                    sumator+=2;
+                }
+                else if (result[i + 1] == "[1]")
+                {
+                    numberConver.Add(1);  // Добавляем 1
+                    sumator+=2;
+                }
+            }
+            
         }
-        }
-        else if (indexElement[i] == -1)
+        if (indexElement[i] == -1)
         {
             break;
         }
-        else if (indexElement[i] == -1)
+
+        if (indexElement[i] == 1 || indexElement[i] == 2)
         {
-            break;
+            sumator += 2;
+        }
+        else if (indexElement[i] == 3 || indexElement[i] == 4 || indexElement[i] == 5 || indexElement[i] == 6)
+        {
+            sumator += 3;
+        }
+
+
+
+    }
+    int a = 0;
+
+    for (int i = 0; i < positions.Count; i++)
+    {
+        if (indexElement[i] == 10 || indexElement[i] == -10)
+        {
+            a = positions[i];
         }
     }
     
-
+    Console.WriteLine("ответ = "+numberConver[a]);
+    
+    Console.WriteLine(String.Join("", numberConver) + "\nSumator:" + sumator + "\n" + -sumator);
+ 
 
     return "PostCalculation Result";
     }
@@ -79,9 +117,8 @@ class RunPostCulculation{
     }
     PostResult res = new PostResult();
 
-    res.PostCalcularionResult(result,positions,indexElement);
     
-    return "52";
+    return res.PostCalcularionResult(result,positions,indexElement);
 
 
     }

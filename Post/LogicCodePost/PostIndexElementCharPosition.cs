@@ -111,7 +111,7 @@ namespace PostIndexElementCharPosition
                     result.Add(sign);
                     positions.Add(currentPos);
                     currentPos += 3;
-                    indexElement.Add(10);  // Індекс для знаку '[0]'
+                    indexElement.Add(-10);  // Індекс для знаку '[0]'
                     // Index for the sign '[0]'
                 }
                 
