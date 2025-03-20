@@ -4,7 +4,6 @@ namespace PostCalculation;
 class PostResult{
     private int search;
     List<int> numberConver = new List<int>();
-    private const int START_INDEX = 10;
     public string PostCalcularionResult(List<string>? result,List<int>? positions,List<int>? indexElement){
 
     if (result == null || positions == null || indexElement == null || result.Count != positions.Count || result.Count != indexElement.Count)
@@ -78,22 +77,48 @@ class PostResult{
 
 
     }
-    int a = 0;
+    int startIndex = 0;
+    int operationIndex = 0;
+    int operation = 0;
 
     for (int i = 0; i < positions.Count; i++)
     {
         if (indexElement[i] == 10 || indexElement[i] == -10)
         {
-            a = positions[i];
+            startIndex = positions[i];
         }
     }
+    for (int i = 0; i < indexElement.Count; i++)
+    {
+        if (indexElement[i] == 3)
+        {
+
+        }
+        if (indexElement[i] == 4)
+        {
+            operationIndex = sumator -1;
+            operation = 1;
+            numberConver[operationIndex] = operation;
+        }
+        if (indexElement[i] == 5)
+        {
+            
+        }
+        if (indexElement[i] == 6)
+        {
+            
+        }
+    }
+
     
-    Console.WriteLine("ответ = "+numberConver[a]);
+
     
-    Console.WriteLine(String.Join("", numberConver) + "\nSumator:" + sumator + "\n" + -sumator);
+    Console.WriteLine("ответ = "+numberConver[startIndex]);
+    
+    Console.WriteLine("\nSumator:" + sumator);
  
 
-    return "PostCalculation Result";
+    return String.Join("", numberConver);
     }
 
 }

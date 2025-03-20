@@ -18,7 +18,7 @@ namespace PostIndexElementCharPosition
             // 5 = Знак '-0>' // 5 = sign '-0>'
             // 6 = Знак '<0-' // 6 = sign '<0-'
             // -1 = Знак '?' // -1 = sign '?'
-            // 10 = Знак '[1], [0]' // 10 = sign '[1], [0]'
+            // 10 = Знак '[1], -10 = [0]' // 10 = sign '[1], -10 =[0]'
             int currentPos = 0;  // Поточна позиція у тексті
             // Current position in the text
 
