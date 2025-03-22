@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net9.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+        <ApplicationManifest>app.manifest</ApplicationManifest>
+        <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Avalonia" Version="11.2.1" />
+        <PackageReference Include="Avalonia.Desktop" Version="11.2.1" />
+        <PackageReference Include="Avalonia.Themes.Fluent" Version="11.2.1" />
+        <PackageReference Include="Avalonia.Fonts.Inter" Version="11.2.1" />
+        <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
+        <PackageReference Include="Avalonia.Diagnostics" Version="11.2.1">
+            <IncludeAssets Condition="'$(Configuration)' != 'Debug'">None</IncludeAssets>
+            <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="MessageBox.Avalonia" Version="3.2.0" />
+    </ItemGroup>
+    <ItemGroup>
+        <AvaloniaResource Include="Resources/folder.png" />
+        <AvaloniaResource Include="Resources/diskette.png" />
+        <AvaloniaResource Include="Resources/new-document.png" />
+        <AvaloniaResource Include="Resources/pause.png" />
+        <AvaloniaResource Include="Resources/play.png" />
+        <AvaloniaResource Include="Resources/v.png" />
+        <AvaloniaResource Include="Resources/left.png" />
+        <AvaloniaResource Include="Resources/right.png" />
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="Resources\" />
+    </ItemGroup>
+</Project>
