@@ -29,6 +29,7 @@
         <AvaloniaResource Include="Resources/v.png" />
         <AvaloniaResource Include="Resources/left.png" />
         <AvaloniaResource Include="Resources/right.png" />
+        <AvaloniaResource Include="Resources/icon.png" />
     </ItemGroup>
     <ItemGroup>
       <Folder Include="Resources\" />

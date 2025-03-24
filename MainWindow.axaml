@@ -5,126 +5,77 @@
         mc:Ignorable="d" d:DesignWidth="1100" d:DesignHeight="700"
         MinWidth="1100" MinHeight="700"
         MaxWidth="1100" MaxHeight="700"
+        
         x:Class="PostX.MainWindow"
-        Title="PostX">
+        Title="PostX"
+        >
 
     <DockPanel>
-        <!-- Меню, закрепленное сверху -->
+
+        <!-- Меню, яке закріплене зверху / Menu docked at the top -->
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
-                <MenuItem Header="_New project"/>
-                <MenuItem Header="_Open"/>
+                <MenuItem Header="_New project"/> <!-- Створити новий проект / Create a new project -->
+                <MenuItem Header="_Open"/> <!-- Відкрити проект / Open a project -->
                 <Separator/>
-                <MenuItem Header="_Save"/>
-                <MenuItem Header="_Save as"/>
+                <MenuItem Header="_Save"/> <!-- Зберегти / Save -->
+                <MenuItem Header="_Save as"/> <!-- Зберегти як / Save as -->
                 <Separator/>
-                <MenuItem Header="_Exit"/>
+                <MenuItem Header="_Exit" Click="OnCloseButtonClick"/> <!-- Вийти / Exit -->
             </MenuItem>
             <MenuItem Header="_Run">
-                <MenuItem Header="_Run"/>
-                <MenuItem Header="_Pause"/>
+                <MenuItem Header="_Run" Click="OnRunPostClick"/> <!-- Запустити / Run -->
+                <MenuItem Header="_Pause"/> <!-- Пауза / Pause -->
                 <Separator/>
-                <MenuItem Header="_Step run"/>
-                <MenuItem Header="_Reset"/>
+                <MenuItem Header="_Step run"/> <!-- Крок за кроком / Step run -->
+                <MenuItem Header="_Reset"/> <!-- Скинути / Reset -->
             </MenuItem>
             <MenuItem Header="_Interpreter">
-                <MenuItem Header="_Post Machine (beta)"/>
-                <MenuItem Header="_Turing Machine (beta)"/>
+                <MenuItem Header="_Post Machine (beta)"/> <!-- Машина Поста (бета) / Post Machine (beta) -->
+                <MenuItem Header="_Turing Machine (beta)"/> <!-- Тюрінгова машина (бета) / Turing Machine (beta) -->
             </MenuItem>
             <MenuItem Header="_View">
-                <MenuItem Header="_Toolbar"/>
-                <MenuItem Header="_Conditional problems"/>
-                <MenuItem Header="_Status line"/>
+                <MenuItem Header="_Toolbar"/> <!-- Панель інструментів / Toolbar -->
+                <MenuItem Header="_Conditional problems"/> <!-- Умовні задачі / Conditional problems -->
+                <MenuItem Header="_Status line"/> <!-- Лінія статусу / Status line -->
             </MenuItem>
             <MenuItem Header="_Settings">
-                <MenuItem Header="_Run"/>
-                <MenuItem Header="_Step run"/>
+                <MenuItem Header="_?.."/> <!-- Налаштування / Settings -->
             </MenuItem>
             <MenuItem Header="_Сommands">
-                <MenuItem Header="_Carriage left"/>
-                <MenuItem Header="_Carriage right"/>
-                <MenuItem Header="_Add/remove tags"/>
+                <MenuItem Header="_Carriage left"/> <!-- Переміщення вліво / Carriage left -->
+                <MenuItem Header="_Carriage right"/> <!-- Переміщення вправо / Carriage right -->
+                <MenuItem Header="_Add/remove tags"/> <!-- Додавання/видалення тегів / Add/remove tags -->
                 <Separator/>
-                <MenuItem Header="_Clear"/>
+                <MenuItem Header="_Clear"/> <!-- Очистити / Clear -->
                 <Separator/>
-                <MenuItem Header="_Delete line"/>
-                <MenuItem Header="_Insert Row"/>
-                <MenuItem Header="_Add line"/>
+                <MenuItem Header="_Delete line"/> <!-- Видалити рядок / Delete line -->
+                <MenuItem Header="_Insert Row"/> <!-- Вставити рядок / Insert Row -->
+                <MenuItem Header="_Add line"/> <!-- Додати рядок / Add line -->
                 <Separator/>
-                <MenuItem Header="_Remember tape"/>
-                <MenuItem Header="_Restore tape"/>
+                <MenuItem Header="_Remember tape"/> <!-- Запам'ятати стрічку / Remember tape -->
+                <MenuItem Header="_Restore tape"/> <!-- Відновити стрічку / Restore tape -->
             </MenuItem>
             <MenuItem Header="_Speed">
-                <MenuItem Header="_Very fast"/>
-                <MenuItem Header="_Fast"/>
-                <MenuItem Header="_Average"/>
-                <MenuItem Header="_Slow"/>
-                <MenuItem Header="_Very slow"/>
+                <MenuItem Header="_Very fast" Click="VeryFastPostSpeedClick"/> <!-- Дуже швидко / Very fast -->
+                <MenuItem Header="_Fast" Click="FastPostSpeedClick"/> <!-- Швидко / Fast -->
+                <MenuItem Header="_Average" Click="AveragePostSpeedClick"/> <!-- Середня швидкість / Average -->
+                <MenuItem Header="_Slow" Click="SlowPostSpeedClick"/> <!-- Повільно / Slow -->
+                <MenuItem Header="_Very slow" Click="VerySlowPostSpeedClick"/> <!-- Дуже повільно / Very slow -->
             </MenuItem>
             <MenuItem Header="_Help">
-                <MenuItem Header="_Reference"/>
+                <MenuItem Header="_Reference"/> <!-- Довідка / Reference -->
                 <Separator/>
-                <MenuItem Header="_About the program"/>
+                <MenuItem Header="_About the program"/> <!-- Про програму / About the program -->
             </MenuItem>
         </Menu>
         
-        <!-- Основной контент под меню -->
-        <!--  <Border Background="#D9D9D9" Width="450" Height="75" Margin="6" VerticalAlignment="Top" HorizontalAlignment="Left">
-            <StackPanel  Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left" >
-                <Image VerticalAlignment="Center" HorizontalAlignment="Left" Source="avares://PostX/Resources/new-document.png" Width="75" Height="75"/>
-                <Image VerticalAlignment="Center" HorizontalAlignment="Left" Source="avares://PostX/Resources/folder.png" Width="75" Height="75"/>
-                <Image VerticalAlignment="Center" HorizontalAlignment="Left" Source="avares://PostX/Resources/diskette.png" Width="75" Height="75"/>
-                <Image VerticalAlignment="Center" HorizontalAlignment="Left" Source="avares://PostX/Resources/play.png" Width="75" Height="75"/>
-                <Image VerticalAlignment="Center" HorizontalAlignment="Left" Source="avares://PostX/Resources/pause.png" Width="75" Height="75"/>
-                <Image VerticalAlignment="Center" HorizontalAlignment="Left" Source="avares://PostX/Resources/v.png" Width="75" Height="75"/>
-            </StackPanel>
-        </Border>-->
         <Grid VerticalAlignment="Top">
-
-            <!-- <Border Background="#AFAFAF" Width="1100" Height="45" VerticalAlignment="Top" HorizontalAlignment="Left">
-                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"><TextBlock FontSize="35" Foreground="Black">↓</TextBlock></StackPanel>
-            </Border>
-            
-             <Border Background="NavajoWhite" Width="1100" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,40,0,0">
-                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
-                <TextBlock FontSize="20">0</TextBlock>
-                </StackPanel>
-            </Border>
-            
-            
-            <Border Background="#AFAFAF" Width="1100" Height="75" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,70,0,0">
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center"> -->
-
-                   <!-- <Button Width="40" Height="75" VerticalAlignment="Center" HorizontalAlignment="Left" ><TextBlock FontSize="26" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black">←</TextBlock></Button>-->
-
-                    
-                  <!-- <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
-               
-                       <StackPanel Orientation="Horizontal">
-                  
-                           <Button Width="50" Height="50" VerticalAlignment="Center" Click="OnButtonClick">
-                               <TextBlock x:Name="OriginalButton" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="90" Foreground="Black"></TextBlock>
-                           </Button>
-                       </StackPanel>
-                   </ScrollViewer>-->
-                    
-                    
-                    
-                   
-                   
-                    <!--<Button Width="40" Height="75" VerticalAlignment="Center" ><TextBlock FontSize="26" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black">→</TextBlock></Button>
-                </StackPanel>
-            </Border>-->
-       
-            <!--<Border Background="#AFAFAF" Width="1100" Height="300" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,150,0,0">
-                
-                <StackPanel Orientation="Horizontal">
-                
-            </StackPanel>
-            </Border>-->
-            
+            <!-- Поле для вводу тексту / Text input field -->
             <TextBox Name="InputBox" Height="30" Watermark="Tape input..." Margin="0,-75,0,0"/>
-            <Button Content="Run" Click="OnButtonClick" Margin="0,0,0,0"/>
+            <!-- Кнопка для запуску / Button to run -->
+            <Button Content="Run" Click="OnRunPostClick" Margin="0,0,0,0"/>
+            <!-- Виведення результатів / Output text area -->
             <TextBlock Name="OutputText" Margin="0,100,0,0"/>
         </Grid>
         
